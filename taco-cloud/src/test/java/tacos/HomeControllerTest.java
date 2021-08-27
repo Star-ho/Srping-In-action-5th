@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(HomeController.class)
+@WebMvcTest()
 class HomeControllerTest {
 
     @Autowired private MockMvc mockMvc;
@@ -22,7 +22,7 @@ class HomeControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(content().string(containsString("Wellcome!")));
+                .andExpect(content().string(containsString("Wellcome123!")));
     }
 
 }
