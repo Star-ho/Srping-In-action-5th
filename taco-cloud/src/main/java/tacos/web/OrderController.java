@@ -11,10 +11,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import tacos.Order;
 import tacos.data.OrderRepository;
 
-@Slf4j
+@Slf4j//로깅
 @Controller
 @RequestMapping("/orders")
-@SessionAttributes("order")
+@SessionAttributes("order")//order 객체를 주입 후 세션이 끝날때까지 사용
 public class OrderController {
 
     private OrderRepository orderRepo;

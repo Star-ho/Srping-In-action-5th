@@ -24,7 +24,7 @@ import tacos.data.TacoRepository;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("order")
+@SessionAttributes("order")//이 클래스에서는 세션에 있는 order객체를받아서 사용가능하다
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepo;
@@ -36,7 +36,7 @@ public class DesignTacoController {
         this.ingredientRepo=ingredientRepo;
     }
 
-    @ModelAttribute(name="order")
+    @ModelAttribute(name="order")//모델 객체에서 order를 가져다 사용
     public Order order(){
         return new Order();
     }
@@ -62,7 +62,7 @@ public class DesignTacoController {
         return "design";
     }
 
-    private List<Ingredient> fiterByType(List<Ingredient> ingredients, Type type){
+    private List<Ingredient> fiterByType(List<Ingredient> ingredients, Type type){//enum에 있는거만 쓰려고 받은듯?
         return ingredients
                 .stream()
                 .filter(x -> x.getType().equals(type))
