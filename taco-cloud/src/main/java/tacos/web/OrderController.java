@@ -2,6 +2,7 @@ package tacos.web;
 
 //import org.springframework.boot.context.properties.ConfigurationProperties;
 //import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,7 +42,7 @@ public class OrderController {
     @GetMapping
     public String ordersFroUser(@AuthenticationPrincipal User user, Model model){
         Pageable pageable= PageRequest.of(0,props.getPageSize());
-        model.addAttribute("orders",orderRepo.findByUserOrderByPlacedAtDesc(user,pageable));
+        model.addAttribute("orders",orderRepo.findByUserOrderByCreatedAtDesc(user));
 
         return "orderList";
     }

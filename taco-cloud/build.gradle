@@ -32,8 +32,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:1.2.1.RELEASE'
 	implementation('org.eclipse.persistence:eclipselink:2.5.2')
 	implementation('org.springframework.boot:spring-boot-starter-security')
+	implementation('org.springframework.boot:spring-boot-configuration-processor')
 	implementation('org.springframework.security:spring-security-test')
-	implementation("org.springframewok.boot:spring-boot-configuration-processor")
+
 }
 
 test {
