@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "taco.orders.pages-size",
+      "type": "int",
+      "description": "Sets the maximum number of orders to display in al list"
+    }
+  ]
+}
