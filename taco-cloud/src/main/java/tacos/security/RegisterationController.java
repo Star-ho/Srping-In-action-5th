@@ -25,7 +25,6 @@ public class RegisterationController {
 
     @PostMapping
     public String processRegistration(RegistrationForm form){
-        System.out.println("from to string  "+form.getInfo());
         userRepo.save(form.toUser(passwordEncoder));
         return "redirect:/login";
     }

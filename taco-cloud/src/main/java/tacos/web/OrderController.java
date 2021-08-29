@@ -1,5 +1,9 @@
 package tacos.web;
 
+//import org.springframework.boot.context.properties.ConfigurationProperties;
+//import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +21,29 @@ import tacos.User;
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")//order 객체를 주입 후 세션이 끝날때까지 사용
+//@ConfigurationProperties(prefix = "taco.orders")
 public class OrderController {
 
+    private int pageSize=20;
+
+//    public void setPageSize(int pageSize){
+//        this.pageSize=pageSize;
+//    }
+
+    private OrderProps props;
+
     private OrderRepository orderRepo;
-    public OrderController(OrderRepository orderRepo){
+    public OrderController(OrderRepository orderRepo,OrderProps props){
+        this.props=props;
         this.orderRepo=orderRepo;
+    }
+
+    @GetMapping
+    public String ordersFroUser(@AuthenticationPrincipal User user, Model model){
+        Pageable pageable= PageRequest.of(0,props.getPageSize());
+        model.addAttribute("orders",orderRepo.findByUserOrderByPlacedAtDesc(user,pageable));
+
+        return "orderList";
     }
 
     @GetMapping("/current")

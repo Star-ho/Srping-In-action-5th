@@ -33,6 +33,7 @@ dependencies {
 	implementation('org.eclipse.persistence:eclipselink:2.5.2')
 	implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.security:spring-security-test')
+	implementation("org.springframewok.boot:spring-boot-configuration-processor")
 }
 
 test {
