@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="078fc192-4635-409d-86e2-15006c614e20" name="Changes" comment="0827" />
+    <list default="true" id="078fc192-4635-409d-86e2-15006c614e20" name="Changes" comment="0827">
+      <change afterPath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/RecentTacoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/Taco.java" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/Taco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/DesignTacoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/DesignTacoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/api/IngredientResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/api/IngredientResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/api/TacoResourceAssembler.java" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/src/main/java/tacos/web/api/TacoResourceAssembler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taco-cloud/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/taco-cloud/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,11 +81,12 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/taco-cloud" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.12886596" />
     <property name="project.structure.side.proportion" value="0.27433628" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -90,7 +100,7 @@
   <component name="RunManager" selected="Application.TacoCloudApplication">
     <configuration name="TacoCloudApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tacos.TacoCloudApplication" />
-      <module name="taco-cloud.taco-cloud.main" />
+      <module name="taco-cloud" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tacos.*" />
@@ -159,6 +169,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629979322209</updated>
+      <workItem from="1630343278751" duration="833000" />
     </task>
     <task id="LOCAL-00001" summary="0827">
       <created>1630028377425</created>
@@ -169,6 +180,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
