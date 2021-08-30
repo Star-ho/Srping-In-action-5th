@@ -69,7 +69,7 @@ public class DesignTacoController {
         return "design";
     }
 
-    private List<Ingredient> fiterByType(List<Ingredient> ingredients, Type type){//enum에 있는거만 쓰려고 받은듯?
+    private List<Ingredient> fiterByType(List<Ingredient> ingredients, Type type){// enum에 있는거만 쓰려고 받은듯?
         return ingredients
                 .stream()
                 .filter(x -> x.getType().equals(type))
