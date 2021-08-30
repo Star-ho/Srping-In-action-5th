@@ -4,8 +4,6 @@ import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
 import tacos.Ingredient;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 public class IngredientResource extends RepresentationModel<IngredientResource> {
 
     @Getter

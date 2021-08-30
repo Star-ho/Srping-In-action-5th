@@ -21,7 +21,7 @@ import java.util.Optional;
 
 import org.springframework.hateoas.EntityModel;
 import tacos.web.api.TacoResource;
-import tacos.web.api.TacoResourceAssembler;
+//import tacos.web.api.TacoResourceAssembler;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -34,49 +34,49 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 //https://honeyinfo7.tistory.com/276
 //https://newbedev.com/resource-and-controllerlinkbuilder-not-found-and-deprecated
 
-@Slf4j
-@RestController
-@RequestMapping(path="/design",produces = "application/json")
-@CrossOrigin(origins="*")
-public class DesignTacoController {
-
-    private TacoRepository tacoRepo;
-    private UserRepository userRepo;
-
-    public DesignTacoController(TacoRepository tacoRepo){
-        this.tacoRepo=tacoRepo;
-    }
-
-    @GetMapping("/recent")
-    public CollectionModel<TacoResource> recentTacos(){
-        PageRequest page=PageRequest.of(0,12, Sort.by("createdAt").descending());
-        List<Taco> tacos= tacoRepo.findAll(page).getContent();
-
-        //taco리스트를 받아서 TacoResource컬렉션모델을 리턴
-        CollectionModel<TacoResource> recentResource=new TacoResourceAssembler().toCollectionModel(tacos);
-
-
-//        recentResource.add(new Link("http://127.0.0.1:8000/desing/recent","recents"));0
-        recentResource.add(
-                linkTo(WebMvcLinkBuilder.methodOn(DesignTacoController.class).recentTacos()).withRel("recents"));
-
-        return recentResource;
-    }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Taco> tacoById(@PathVariable("id") Long id){
-        Optional<Taco> optTaco=tacoRepo.findById(id);
-        if(optTaco.isPresent()){
-            return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping(consumes ="application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Taco postTaco(@RequestBody Taco taco){
-        return tacoRepo.save(taco);
-    }
-
-}
+//@Slf4j
+//@RestController
+//@RequestMapping(path="/design",produces = "application/json")
+//@CrossOrigin(origins="*")
+//public class DesignTacoController {
+//
+//    private TacoRepository tacoRepo;
+//    private UserRepository userRepo;
+//
+//    public DesignTacoController(TacoRepository tacoRepo){
+//        this.tacoRepo=tacoRepo;
+//    }
+//
+//    @GetMapping("/recent")
+//    public CollectionModel<TacoResource> recentTacos(){
+//        PageRequest page=PageRequest.of(0,12, Sort.by("createdAt").descending());
+//        List<Taco> tacos= tacoRepo.findAll(page).getContent();
+//
+//        //taco리스트를 받아서 TacoResource컬렉션모델을 리턴
+//        CollectionModel<TacoResource> recentResource=new TacoResourceAssembler().toCollectionModel(tacos);
+//
+//
+////        recentResource.add(new Link("http://127.0.0.1:8000/desing/recent","recents"));0
+//        recentResource.add(
+//                linkTo(WebMvcLinkBuilder.methodOn(DesignTacoController.class).recentTacos()).withRel("recents"));
+//
+//        return recentResource;
+//    }
+//
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Taco> tacoById(@PathVariable("id") Long id){
+//        Optional<Taco> optTaco=tacoRepo.findById(id);
+//        if(optTaco.isPresent()){
+//            return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//    }
+//
+//    @PostMapping(consumes ="application/json")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Taco postTaco(@RequestBody Taco taco){
+//        return tacoRepo.save(taco);
+//    }
+//
+//}

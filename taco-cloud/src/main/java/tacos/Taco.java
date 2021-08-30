@@ -9,11 +9,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-
+import org.springframework.data.rest.core.annotation.RestResource;
 
 
 @Data
 @Entity
+@RestResource(rel="tacos",path = "tacos")
 public class Taco {
 
     private static final long serialVersionUID=1L;
