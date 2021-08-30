@@ -2,9 +2,12 @@ package tacos.web;
 
 //import org.springframework.boot.context.properties.ConfigurationProperties;
 //import org.springframework.context.annotation.Configuration;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,5 +80,28 @@ public class OrderController {
         orderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
+    }
+
+    @PutMapping("/{orderId}")
+    public Order putOrder(@RequestBody Order order){
+        return orderRepo.save(order);
+    }
+
+    @PatchMapping(path = "/{orderId}",consumes = "application/json")
+    public Order patchOrder(@PathVariable("orderId") Long orderId,@RequestBody Order patch){
+        Order order =orderRepo.findById(orderId).get();
+        if(patch.getDeliveryState()!=null){
+            order.setDeliveryState(patch.getDeliveryState());
+        }//... 이후 if절 몇개 나옴
+
+        return orderRepo.save(order);
+    }
+
+    @DeleteMapping("/{orderId}")
+    @ResponseStatus(code= HttpStatus.NO_CONTENT)
+    public void deleteOrder(@PathVariable("orderId") Long orderId){
+        try {
+            orderRepo.deleteById(orderId);
+        }catch (EmptyResultDataAccessException e){}
     }
 }
