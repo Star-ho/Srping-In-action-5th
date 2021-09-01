@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PRIVATE,force = true)
-@Entity
+@Table("ingredient")
 public class Ingredient {
     @Id
     private final String id;
