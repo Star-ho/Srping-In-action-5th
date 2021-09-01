@@ -56,9 +56,9 @@ public class RecentTacoController {
                         links.linkFor(Taco.class)
                                 .slash("recent")
                                 .withRel("recents")
-                )
+                );
                 return model;
             }
-        }
+        };
     }
 }
