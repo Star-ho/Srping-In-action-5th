@@ -10,10 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import javax.sql.DataSource;
 
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+import tacos.data.UserRepository;
 import tacos.security.NoEncodingPasswordEncoder;
 
 @Configuration
@@ -28,63 +34,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    DataSource dataSource;
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http
-            .authorizeRequests()
-                .antMatchers("/","/**").access("permitAll");
-//                .antMatchers("/design","/orders","/orders/current")//`.access("permitAll")
-//                    .access("hasRole('ROLE_USER')")
-//                .antMatchers("/","/**").access("permitAll")
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .and()
-//                    .logout()
-//                        .logoutSuccessUrl("/")
-//                .and()
-//                .csrf();
-
+    @Bean
+    protected SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
+        return http
+                .authorizeExchange()
+                .pathMatchers("/design","/orders").hasAnyAuthority("USER")
+                .anyExchange().permitAll()
+                .and()
+                .build();
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());
-
-//                .ldapAuthentication()
-//                .userSearchBase("ou=people")
-//                .userSearchFilter("(uid={0})")
-//                .groupSearchBase("ou=groups")
-//                .groupSearchFilter("member={0}")
-//                .contextSource()
-//                .root("dc=tacocloud,dc=com")
-//                .ldif("classpath:users.ldif")
-//                .and()
-//                .passwordCompare()
-//                .passwordEncoder(new BCryptPasswordEncoder())
-//                .passwordAttribute("userPasscode");
-
-//                .jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery(
-//                        "select username, password, enabled from users where username=?"
-//                )
-//                .authoritiesByUsernameQuery(
-//                        "select username, authority from  authorities where username=?"
-//                ).passwordEncoder(new NoEncodingPasswordEncoder());
-
-//        auth.inMemoryAuthentication()
-//                .withUser("user1")
-//                .password("{noop}password1")
-//                .authorities("ROLE_USER")
-//                .and()
-//                .withUser("user2")
-//                .password("{noop}password2")
-//                .authorities("ROLE_USER");
+    @Service
+    public ReactiveUserDetailsService userDetailsService(UserRepository userRepo){
+        return new ReactiveUserDetailsService() {
+            @Override
+            public Mono<UserDetails> findByUsername(String username) {
+                return userRepo.findByUsername(username)
+                        .map(user -> {
+                            return user.toUswerDetails()
+                        });
+            }
+        }
     }
+
+
 }
