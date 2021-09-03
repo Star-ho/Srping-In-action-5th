@@ -38,24 +38,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         return http
                 .authorizeExchange()
-                .pathMatchers("/design","/orders").hasAnyAuthority("USER")
-                .anyExchange().permitAll()
-                .and()
+                .anyExchange().permitAll().and()
                 .build();
+//                .pathMatchers("/design","/orders").hasAnyAuthority("USER")
+//                .anyExchange().permitAll()
+//                .and()
+//                .build();
     }
 
-    @Service
-    public ReactiveUserDetailsService userDetailsService(UserRepository userRepo){
-        return new ReactiveUserDetailsService() {
-            @Override
-            public Mono<UserDetails> findByUsername(String username) {
-                return userRepo.findByUsername(username)
-                        .map(user -> {
-                            return user.toUswerDetails()
-                        });
-            }
-        }
-    }
+//    @Service
+//    public ReactiveUserDetailsService userDetailsService(UserRepository userRepo){
+//        return new ReactiveUserDetailsService() {
+//            @Override
+//            public Mono<UserDetails> findByUsername(String username) {
+//                return userRepo.findByUsername(username)
+//                        .map(user -> {
+//                            return user.toUswerDetails();
+//                        });
+//            }
+//        };
+//    }
 
 
 }

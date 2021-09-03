@@ -1,66 +1,42 @@
 package tacos;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.CreditCardNumber;
 
+
+import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
-@Entity
-@Table(name="Taco_Order")
+@Table("tacoders")
 @Data
-public class Order {
+public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @PrimaryKey
+    private UUID id= Uuids.timeBased();
     private Date createdAt;
 
-    @NotBlank(message = "Name is required")
-    private String deliveryName;
+    @Column("tacos")
+    private List<TacoUDT> tacos=new ArrayList<>();
 
-    @NotBlank(message = "Street is required")
-    private String deliveryStreet;
+    @Column("user")
+    private UserUDT user;
 
-    @NotBlank(message = "City is required")
-    private String deliveryCity;
-
-    @NotBlank(message = "State is required")
-    private String deliveryState;
-
-    @NotBlank(message = "Zip code is required")
-    private String deliveryZip;
-
-    @CreditCardNumber(message = "Not a valid credit card number")
-    private String ccNumber;
-
-    @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",message = "Must be formatted MM/YY")
-    private String ccExpiration;
-
-    @Digits(integer = 3,fraction = 0,message = "Invalid CVV")
-    private String ccCVV;
-
-    @ManyToMany(targetEntity = Taco.class)
-    private List<Taco> tacos=new ArrayList<>();
-
-    @ManyToOne
-    private User user;
-
-    public void addDesign(Taco design){
+    public void addDesign(TacoUDT design){
         this.tacos.add(design);
-    }
-
-    @PrePersist
-    void createdAt(){
-        this.createdAt=new Date();
     }
 
 }

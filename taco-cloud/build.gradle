@@ -38,6 +38,11 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-security')
 
 	implementation('org.springframework.boot:spring-boot-starter-data-cassandra-reactive')
+//	implementation 'com.datastax.cassandra:cassandra-driver-core:2.1.7.1'
+
+	implementation 'com.datastax.cassandra:cassandra-driver-core:4.0.0'
+	//not in book for P418 import UUIDs
+
 }
 
 test {

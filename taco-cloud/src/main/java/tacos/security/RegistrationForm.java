@@ -20,9 +20,8 @@ public class RegistrationForm {
         return this.username+"  "+ this.password+"  "+this.street;
     }
 
-    public User toUser(PasswordEncoder passwordEncoder){
-        System.out.println();
-        return new User(username, passwordEncoder.encode(password),fullname,street,city,state,zip,phone);
-    }
+//    public User toUser(PasswordEncoder passwordEncoder){
+//        return new User(username, passwordEncoder.encode(password),fullname,street,city,state,zip,phone);
+//    }
 
 }

@@ -20,6 +20,7 @@ import tacos.data.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.hateoas.EntityModel;
 import tacos.web.api.TacoResource;
@@ -56,7 +57,7 @@ public class DesignTacoController {
 
 
     @GetMapping("/{id}")
-    public Mono<Taco> tacoById(@PathVariable("id") Long id){
+    public Mono<Taco> tacoById(@PathVariable("id") UUID id){
         return tacoRepo.findById(id);
     }
 
